@@ -6,13 +6,6 @@ import java.util.Set;
 public class LongestSubstringWithoutRepeatingCharacters {
 
     public int lengthOfLongestSubstring(String s) {
-        if (s.length() == 0) {
-            return 0;
-        }
-        if (s.length() == 1) {
-            return 1;
-        }
-
         char[] arr = s.toCharArray();
         int length = 1;
 
@@ -20,15 +13,11 @@ public class LongestSubstringWithoutRepeatingCharacters {
             Set<Character> set = new HashSet<>();
             set.add(arr[i]);
 
-            int j = i + 1;
-            while (true) {
-                if (!set.add(arr[j]) || j == arr.length - 1) {
-                    if (set.size() > length) {
-                        length = set.size();
-                    }
-                    break;
-                }
-                j++;
+            for (int j = i + 1; j < arr.length && set.add(arr[j]); j++) {
+            }
+
+            if (set.size() > length) {
+                length = set.size();
             }
         }
         return length;
