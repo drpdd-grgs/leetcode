@@ -1,7 +1,6 @@
 package ru.kaifkaby.leetcode.medium;
 
 import org.junit.jupiter.api.Test;
-import ru.kaifkaby.leetcode.medium.LongestSubstringWithoutRepeatingCharacters;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
