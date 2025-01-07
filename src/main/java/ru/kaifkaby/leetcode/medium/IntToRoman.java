@@ -1,4 +1,4 @@
-package ru.kaifkaby.medium;
+package ru.kaifkaby.leetcode.medium;
 
 public class IntToRoman {
 
