@@ -5,6 +5,10 @@ import java.util.Arrays;
 public class CoinChange {
 
     public int coinChange(int[] coins, int amount) {
+        return coinChangeR(Arrays.stream(coins).sorted().toArray(), amount);
+    }
+
+    private int coinChangeR(int[] coins, int amount) {
         int coin = coins[coins.length - 1];
 
         if (coins.length == 1) {
