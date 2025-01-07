@@ -17,7 +17,7 @@ public class CoinChange {
 
         int[] remainedCoins = Arrays.copyOfRange(coins, 0, coins.length - 1);
         for (int count = amount / coin; count >= 0; count--) {
-            int coinChangeNext = coinChange(remainedCoins, amount - coin * count);
+            int coinChangeNext = coinChangeR(remainedCoins, amount - coin * count);
             if (coinChangeNext != -1) {
                 return count + coinChangeNext;
             }
