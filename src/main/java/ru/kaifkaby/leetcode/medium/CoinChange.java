@@ -16,12 +16,16 @@ public class CoinChange {
         }
 
         int[] remainedCoins = Arrays.copyOfRange(coins, 0, coins.length - 1);
+        int finalCount = Integer.MAX_VALUE;
         for (int count = amount / coin; count >= 0; count--) {
             int coinChangeNext = coinChangeR(remainedCoins, amount - coin * count);
             if (coinChangeNext != -1) {
-                return count + coinChangeNext;
+                int tmp = count + coinChangeNext;
+                if (tmp < finalCount) {
+                    finalCount = tmp;
+                }
             }
         }
-        return -1;
+        return finalCount == Integer.MAX_VALUE ? -1 : finalCount;
     }
 }
