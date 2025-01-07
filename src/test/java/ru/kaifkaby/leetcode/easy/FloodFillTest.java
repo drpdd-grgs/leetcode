@@ -2,16 +2,14 @@ package ru.kaifkaby.leetcode.easy;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static java.util.Arrays.deepEquals;
 
 class FloodFillTest {
 
     @Test
     void test_ex1() {
-        assertTrue(Arrays.deepEquals(new int[][]{
+        assertTrue(deepEquals(new int[][]{
                 {2, 2, 2},
                 {2, 2, 0},
                 {2, 0, 1}
@@ -24,7 +22,7 @@ class FloodFillTest {
 
     @Test
     void test_ex2() {
-        assertTrue(Arrays.deepEquals(new int[][]{
+        assertTrue(deepEquals(new int[][]{
                 {0, 0, 0},
                 {0, 0, 0},
                 {0, 0, 0}
