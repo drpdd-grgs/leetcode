@@ -1,4 +1,4 @@
-package ru.kaifkaby.medium;
+package ru.kaifkaby.leetcode.medium;
 
 import org.junit.jupiter.api.Test;
 import ru.kaifkaby.leetcode.medium.IntToRoman;
