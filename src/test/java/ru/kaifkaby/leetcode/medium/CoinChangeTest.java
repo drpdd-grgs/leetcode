@@ -30,4 +30,14 @@ class CoinChangeTest {
     public void test_ex4() {
         assertEquals(20, new CoinChange().coinChange(new int[]{186, 419, 83, 408}, 6249));
     }
+
+    @Test
+    public void test_ex5() {
+        assertEquals(22, new CoinChange().coinChange(new int[]{288, 160, 10, 249, 40, 77, 314, 429}, 9208));
+    }
+
+    @Test
+    public void test_ex6() {
+        assertEquals(25, new CoinChange().coinChange(new int[]{94, 91, 377, 368, 207, 40, 415, 61}, 9662));
+    }
 }
