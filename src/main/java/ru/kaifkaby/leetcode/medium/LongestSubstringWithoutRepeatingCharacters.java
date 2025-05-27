@@ -1,25 +1,28 @@
 package ru.kaifkaby.leetcode.medium;
 
-import java.util.HashSet;
-import java.util.Set;
-
+/**
+ * <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters">Longest Substring Without Repeating Characters - LeetCode</a>
+ */
 public class LongestSubstringWithoutRepeatingCharacters {
 
     public int lengthOfLongestSubstring(String s) {
-        char[] arr = s.toCharArray();
-        int length = 1;
+        char[] str = s.toCharArray();
+        int[] buf = new int[128];
+        int max = 0;
+        int st = 0;
 
-        for (int i = 0; i < arr.length - 1; i++) {
-            Set<Character> set = new HashSet<>();
-            set.add(arr[i]);
-
-            for (int j = i + 1; j < arr.length && set.add(arr[j]); j++) {
+        for (int i = 0; i < str.length; i++) {
+            int cur = buf[str[i]];
+            if (cur > st) {
+                st = cur;
             }
-
-            if (set.size() > length) {
-                length = set.size();
+            int length = i - st + 1;
+            if (length > max) {
+                max = length;
             }
+            buf[str[i]] = i + 1;
         }
-        return length;
+
+        return max;
     }
 }

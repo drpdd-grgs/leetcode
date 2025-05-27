@@ -7,17 +7,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class LongestSubstringWithoutRepeatingCharactersTest {
 
     @Test
-    public void test_abcabcbb() {
+    void test_1() {
         assertEquals(3, new LongestSubstringWithoutRepeatingCharacters().lengthOfLongestSubstring("abcabcbb"));
     }
 
     @Test
-    public void test_bbbbb() {
+    void test_2() {
         assertEquals(1, new LongestSubstringWithoutRepeatingCharacters().lengthOfLongestSubstring("bbbbb"));
     }
 
     @Test
-    public void test_pwwkew() {
+    void test_3() {
         assertEquals(3, new LongestSubstringWithoutRepeatingCharacters().lengthOfLongestSubstring("pwwkew"));
     }
 }
