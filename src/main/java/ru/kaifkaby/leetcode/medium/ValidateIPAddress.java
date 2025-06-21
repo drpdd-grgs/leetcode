@@ -16,24 +16,8 @@ public class ValidateIPAddress {
         boolean mayBeIPv6 = false;
 
         while (i < queryIP.length()) {
-            if (pos == 0) {
-                if (ip[i] > 57 || ip[i] < 48) {
-                    if ((ip[i] > 96 && ip[i] < 103) || (ip[i] > 64 && ip[i] < 71)) {
-                        mayBeIPv6 = true;
-                        i++;
-                        pos++;
-                        break;
-                    }
-                    return "Neither";
-                }
-                ipv4slice = ip[i] - 48;
-                pos++;
-                i++;
-                continue;
-            }
-
             if (ip[i] == 46) {
-                if (ipv4slice < 256 && separatorCount < 3) {
+                if (ipv4slice < 256 && separatorCount < 3 && pos != 0) {
                     ipv4slice = 0;
                     pos = 0;
                     i++;
@@ -54,7 +38,7 @@ public class ValidateIPAddress {
                 return "Neither";
             }
 
-            if (pos > 2) {
+            if (pos > 2 || ip[i] > 57 || ip[i] < 48) {
                 if (separatorCount == 0) {
                     if ((ip[i] > 96 && ip[i] < 103) || (ip[i] > 64 && ip[i] < 71) || (ip[i] < 58 && ip[i] > 47)) {
                         mayBeIPv6 = true;
@@ -73,30 +57,13 @@ public class ValidateIPAddress {
                 return "Neither";
             }
 
-            if (ip[i] > 57 || ip[i] < 48) {
-                if (ip[i] == 58) {
-                    separatorCount++;
-                    mayBeIPv6 = true;
-                    i++;
-                    pos = 0;
-                    break;
-                }
-                if (separatorCount == 0 && ((ip[i] > 96 && ip[i] < 103) || (ip[i] > 64 && ip[i] < 71))) {
-                    mayBeIPv6 = true;
-                    i++;
-                    pos++;
-                    break;
-                }
-                return "Neither";
-            }
-
             ipv4slice = (ipv4slice * 10) + ip[i] - 48;
             pos++;
             i++;
         }
 
         if (!mayBeIPv6) {
-            if (separatorCount == 3 && pos != 0 && (pos != 2 || ipv4slice < 256)) {
+            if (separatorCount == 3 && pos != 0 && ipv4slice < 256) {
                 return "IPv4";
             } else {
                 return "Neither";
@@ -104,12 +71,7 @@ public class ValidateIPAddress {
         }
 
         while (i < queryIP.length()) {
-            if (pos == 0) {
-                if (!(ip[i] < 58 && ip[i] > 47) && !(ip[i] > 96 && ip[i] < 103) && !(ip[i] > 64 && ip[i] < 71)) {
-                    return "Neither";
-                }
-            }
-            if (ip[i] == 58) {
+            if (ip[i] == 58 && pos != 0) {
                 if (separatorCount == 7) {
                     return "Neither";
                 }
