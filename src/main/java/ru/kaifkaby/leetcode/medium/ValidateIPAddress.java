@@ -6,7 +6,6 @@ public class ValidateIPAddress {
         if (queryIP.length() < 7) {
             return "Neither";
         }
-        char[] ip = queryIP.toCharArray();
 
         char c;
         int i = 0;
@@ -17,7 +16,7 @@ public class ValidateIPAddress {
         boolean mayBeIPv6 = false;
 
         while (i < queryIP.length()) {
-            c = (char) (ip[i] | 0x20);
+            c = (char) (queryIP.charAt(i) | 0x20);
             if (c == '.') {
                 if (ipv4slice < 256 && separatorCount != 3 && pos != 0) {
                     ipv4slice = 0;
@@ -73,7 +72,7 @@ public class ValidateIPAddress {
         }
 
         while (i < queryIP.length()) {
-            c = (char) (ip[i] | 0x20);
+            c = (char) (queryIP.charAt(i) | 0x20);
             if (c == ':' && pos != 0) {
                 if (separatorCount == 7) {
                     return "Neither";
