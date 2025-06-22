@@ -7,8 +7,10 @@ public class ValidateIPAddress {
 
     public String validIPAddress(String queryIP) {
 
+        int l = queryIP.length();
+
         // Minimum length of ip address (0.0.0.0).
-        if (queryIP.length() < 7) {
+        if (l < 7) {
             return "Neither";
         }
 
@@ -27,7 +29,7 @@ public class ValidateIPAddress {
         // Flag represents, that address is surely not IPv4 but may be IPv6.
         boolean ms = false;
 
-        while (i < queryIP.length()) {
+        while (i != l) {
             // Lowercase.
             c = (char) (queryIP.charAt(i) | 0x20);
 
@@ -54,7 +56,7 @@ public class ValidateIPAddress {
                 return "Neither";
             }
 
-            if (si > 2 || c > '9' || c < '0') {
+            if (si == 3 || c > '9' || c < '0') {
                 if (sc == 0) {
                     if ((c >= 'a' && c <= 'f') || (c >= '0' && c <= '9')) {
                         ms = true;
@@ -87,7 +89,7 @@ public class ValidateIPAddress {
             }
         }
 
-        while (i < queryIP.length()) {
+        while (i != l) {
             // Lowercase.
             c = (char) (queryIP.charAt(i) | 0x20);
             if (c == ':' && si != 0) {
@@ -99,10 +101,10 @@ public class ValidateIPAddress {
                 i++;
                 continue;
             }
-            if (si > 3) {
+            if (si == 4) {
                 return "Neither";
             }
-            if (!(c >= 'a' && c <= 'f') && !(c >= '0' && c <= '9')) {
+            if ((c < 'a' || c > 'f') && (c < '0' || c > '9')) {
                 return "Neither";
             }
             i++;
