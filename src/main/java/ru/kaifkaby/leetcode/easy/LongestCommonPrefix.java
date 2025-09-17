@@ -3,29 +3,27 @@ package ru.kaifkaby.leetcode.easy;
 public class LongestCommonPrefix {
 
     public String longestCommonPrefix(String[] strs) {
-        StringBuilder p = new StringBuilder();
-        if (strs[0].isEmpty()) {
-            return strs[0];
-        }
-
+        int i = 0;
         mn:
-        for (int i = 0; i < strs[0].length(); i++) {
+        for (; i < strs[0].length(); i++) {
             for (int j = 1; j < strs.length; j++) {
                 if (strs[j].length() <= i || strs[j].charAt(i) != strs[0].charAt(i)) {
                     break mn;
                 }
             }
-            p.append(strs[0].charAt(i));
         }
-        return p.toString();
+        return strs[0].substring(0, i);
     }
 
     public String longestCommonPrefix2(String[] strs) {
         int l = strs[0].length();
         int j;
+        int m;
 
         for (int i = 1; i < strs.length; i++) {
-            for (j = 0; j < l && j < strs[i].length() && strs[0].charAt(j) == strs[i].charAt(j); j++) ;
+            m = Math.min(l, strs[i].length());
+            j = -1;
+            while (++j < m && strs[0].charAt(j) == strs[i].charAt(j)) ;
             if (j == 0) {
                 return "";
             }
